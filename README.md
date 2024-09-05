@@ -2,6 +2,8 @@
 
 >Тут я викладу усі матеріали та лабораторні роботи які проходив під час підготовки до складання екзамену Burp Suite Certified Practitioner Exam, якими в першу чергу буду користуватись сам в подальшому, а по друге думаю це буде корисно для інших, хто планує отримати сертифікацію BSCP.
 
+----
+
 **[Access control vulnerabilities](#Access-control-vulnerabilities)** 
 **[API](#API)** 
 **[Authentication](#Authentication)**
@@ -29,3 +31,5 @@
 **[XML](#XML)**
 **[XSS](#XSS)**
 **[Сache deception](#Сache-deception)**
+
+----
