@@ -1,10 +1,12 @@
 # Burp-exam-notes
 
 >Тут я викладу усі матеріали та лабораторні роботи які проходив під час підготовки до складання екзамену Burp Suite Certified Practitioner Exam, якими в першу чергу буду користуватись сам в подальшому, а по друге думаю це буде корисно для інших, хто планує отримати сертифікацію BSCP.
+>Корисні підказки для складання екзамену від [PortSwigger] (https://portswigger.net/web-security/certification/exam-hints-and-guidance/retaking-your-exam)
 
 ----
 
 **[Access control vulnerabilities](#Access-control-vulnerabilities)** 
+[whoami](#whoami)  
 **[API](#API)** 
 **[Authentication](#Authentication)**
 **[CORS](#CORS)**
