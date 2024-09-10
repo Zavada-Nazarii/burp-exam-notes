@@ -156,8 +156,9 @@ java --add-opens=java.xml/com.sun.org.apache.xalan.internal.xsltc.trax=ALL-UNNAM
 sqlmap -u 'cURL із Network' -p 'parametr' -batch --dbs --tables -T (тут вказати назву таблиці) --dump
 ```
 **JWT**
+>[jws_secret.txt](https://github.com/Zavada-Nazarii/burp-exam-notes/blob/main/jws_secret.txt)
 ```
-hashcat -a 0 -m 16500 <YOUR-JWT> /path/to/Payload/ [jws_secret.txt](https://github.com/Zavada-Nazarii/burp-exam-notes/blob/main/jws_secret.txt) --force
+hashcat -a 0 -m 16500 <YOUR-JWT> /path/to/Payload/jws_secret.txt --force
 ```
 >і ще така штука із docker є, це лаба "JWT authentication bypass via algorithm confusion with no exposed key"
 Майте собі піднятий docker і готовий образ, щоб не виправляли під час екзамену трабли із бібліотеками системи.
