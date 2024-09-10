@@ -160,7 +160,7 @@ sqlmap -u 'cURL із Network' -p 'parametr' -batch --dbs --tables -T (тут в�
 ```
 hashcat -a 0 -m 16500 <YOUR-JWT> /path/to/Payload/jws_secret.txt --force
 ```
->і ще така штука із docker є, це лаба "JWT authentication bypass via algorithm confusion with no exposed key"
+>і ще така штука із docker є, це лаба [JWT authentication bypass via algorithm confusion with no exposed key](https://portswigger.net/web-security/jwt/algorithm-confusion/lab-jwt-authentication-bypass-via-algorithm-confusion-with-no-exposed-key)
 Майте собі піднятий docker і готовий образ, щоб не виправляли під час екзамену трабли із бібліотеками системи.
 ```
 docker run --rm -it portswigger/sig2n JWT_1 JWT_2
